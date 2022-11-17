@@ -31,22 +31,7 @@ pegar(bessy):- duda_possui(rede), local_duda(floresta), assert(duda_possui(bessy
 pegar(bessy):- not(local_duda(floresta)), write("Bessy está na [floresta].").
 pegar(bessy):- not(duda_possui(rede)), write("Preciso de uma rede para pegar Bessy, talvez tenha uma na [casa]!").
 
-pegar(terno_pequeno):- local_duda(escritorio), assert(duda_possui(terno_pequeno)), write("Duda pegou um terno pequeno").
-
 pegar(_X):- write("Esse item não existe!").
-
-
-colocar(X, Y):- (X \== terno_pequeno; Y \== bessy), write("Não é possível colocar "), write(X), write(" em "), write(Y).
-colocar(terno_pequeno, bessy):- not(duda_possui(bessy)), write("Não estou com a Bessy para fazer isso").
-colocar(terno_pequeno, bessy):- not(duda_possui(terno_pequeno)), write("Não tenho um terno pequeno para fazer isso").
-colocar(terno_pequeno, bessy):- retract(duda_possui(bessy)), retract(duda_possui(terno_pequeno)), assert(duda_possui(bessy_de_terno)).
-
-
-falar_com(bessy):- duda_possui(bessy), write("Bessy: có có cocó").
-falar_com(bessy):- local_duda(floresta), write("Bessy: có có cocó").
-falar_com(bessy):- write("Bessy não está aqui").
-
-falar_com(X):- write("Não reconheço esse tal "), write(X).
 
 
 finalizado:- duda_possui(bessy), local_duda(galinheiro).
@@ -59,15 +44,9 @@ dialogue_screen(menu_principal):- write("FUGA DA GALINHA"), nl,
                write("A Dona Lurdes te chamou para capturar Bessy, a galinha premiada que fugiu para a floresta!"), nl,
                write("Você consegue leva-la de volta para o galinheiro???"), nl,
                nl, write("-----COMANDOS-----"), nl,
-               write("ir_para(X) - Vai pro lugar indicado entre os parenteses"), nl,
-               write("pegar(X) - Pega o item indicado entre os parenteses"), nl,
-               write("colocar(X, Y) - Coloca X em Y"), nl,
-               write("falar_com(X) - Fala com a pessoa especificada entre os parenteses"), nl,
+               write("ir_para() - Vai pro lugar indicado entre os parenteses"), nl,
+               write("pegar() - Pega o item indicado entre os parenteses"), nl,
                nl, write("-----LOCAIS-----"), nl,
                write("patio "), nl, write("floresta "), nl, write("lagoa "), nl, write("casa "), nl, write("galinheiro "), nl.
-
-dialogue_screen(homem_de_terno1):- write("Homem de Terno: Não consigo concentrar no trabalho sabendo que a minha galinha fugiu :(").
-dialogue_screen(homem_de_terno2):- write("Homem de Terno: Obrigado por resgatar a Bessy! :)").
-
 
 
