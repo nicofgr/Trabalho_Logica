@@ -1,10 +1,9 @@
 :- dynamic duda_possui/1.
 :- dynamic local_duda/1.
-:- dynamic dialogue_screen/1.
+:- dynamic dialogue/1.
 
 local_duda(patio).
-
-dialogue_screen(sim).
+dialogue(sim).
 
 acessivel(patio, casa):- duda_possui(banho).
 acessivel(patio, Y):- Y \== casa, Y\== escritorio.
@@ -39,23 +38,26 @@ pegar(_X):- write("Esse item não existe!").
 colocar(X, Y):- (X \== terno_pequeno; Y \== bessy), write("Não é possível colocar "), write(X), write(" em "), write(Y).
 colocar(terno_pequeno, bessy):- not(duda_possui(bessy)), write("Não estou com a Bessy para fazer isso").
 colocar(terno_pequeno, bessy):- not(duda_possui(terno_pequeno)), write("Não tenho um terno pequeno para fazer isso").
-colocar(terno_pequeno, bessy):- retract(duda_possui(bessy)), retract(duda_possui(terno_pequeno)), assert(duda_possui(bessy_de_terno)).
+colocar(terno_pequeno, bessy):- retract(duda_possui(bessy)), retract(duda_possui(terno_pequeno)), assert(duda_possui(bessy_de_terno)), write("Você vestiu o terno pequeno na Bessy").
 
 
 falar_com(bessy):- duda_possui(bessy), write("Bessy: có có cocó").
 falar_com(bessy):- local_duda(floresta), write("Bessy: có có cocó").
 falar_com(bessy):- write("Bessy não está aqui").
 
+falar_com(homem_de_terno):- dialogue(homem_de_terno).
+
 falar_com(X):- write("Não reconheço esse tal "), write(X).
 
 
-finalizado:- duda_possui(bessy), local_duda(galinheiro).
+finalizado:- duda_possui(bessy), local_duda(galinheiro),  write("Obrigado por salvar Bessy!!!!!!!!!").
+finalizado:- duda_possui(bessy_de_terno), local_duda(escritorio),  dialogue(homem_de_terno), write("Na segunda, Homem de Terno leva Bessy para o escritório e ela consegue um emprego, em poucos anos Bessy sobe a escada corporativa e se torna CEO da empresa. Bessy vive feliz.").
 
-rodar:- dialogue_screen(sim), dialogue_screen(menu_principal), retract(dialogue_screen(sim)), rodar.
-rodar:- finalizado, nl, write("Você salvou Bessy!!!!!!!!!"), nl, write("Jogo finalizado").
-rodar:- nl, write("Digite o que deseja fazer:"), nl, write(">> "), read(X), call(X), rodar.
+rodar:- dialogue(sim), dialogue(menu_principal), retract(dialogue(sim)), rodar.
+rodar:- finalizado, nl, write("Jogo finalizado").
+rodar:- nl, local_duda(M), mapa(M), nl, write("Digite o que deseja fazer:"), nl, write(">> "), read(X), call(X), rodar.
 
-dialogue_screen(menu_principal):- write("FUGA DA GALINHA"), nl,
+dialogue(menu_principal):- write("FUGA DA GALINHA"), nl,
                write("A Dona Lurdes te chamou para capturar Bessy, a galinha premiada que fugiu para a floresta!"), nl,
                write("Você consegue leva-la de volta para o galinheiro???"), nl,
                nl, write("-----COMANDOS-----"), nl,
@@ -66,8 +68,33 @@ dialogue_screen(menu_principal):- write("FUGA DA GALINHA"), nl,
                nl, write("-----LOCAIS-----"), nl,
                write("patio "), nl, write("floresta "), nl, write("lagoa "), nl, write("casa "), nl, write("galinheiro "), nl.
 
-dialogue_screen(homem_de_terno1):- write("Homem de Terno: Não consigo concentrar no trabalho sabendo que a minha galinha fugiu :(").
-dialogue_screen(homem_de_terno2):- write("Homem de Terno: Obrigado por resgatar a Bessy! :)").
+dialogue(homem_de_terno):- duda_possui(bessy), write("Homem de Terno: Obrigado por resgatar a Bessy! :)").
+dialogue(homem_de_terno):- duda_possui(bessy_de_terno), write("A Bessy de terno? Como não pensei nisso antes? Vou levar ela para o escritório da minha empresa na cidade.").
+dialogue(homem_de_terno):- write("Homem de Terno: Não consigo concentrar no trabalho sabendo que a minha galinha fugiu :(").
+
+mapa(patio):- write("     |      "), nl,
+              write("  o   x  [ ]"), nl,
+              write("      [ ]   ").
+
+mapa(lagoa):- write("     |      "), nl,
+              write(" (x) /// [ ]"), nl,
+              write("      [ ]   ").
+
+mapa(floresta):- write("     x      "), nl,
+                 write("  o  /// [ ]"), nl,
+                 write("      [ ]   ").
+
+mapa(casa):- write("     |      "), nl,
+             write("  o  /// [x]"), nl,
+             write("      [ ]   ").
+
+mapa(escritorio):- write("     |      "), nl,
+                   write("  o  /// [x]"), nl,
+                   write("      [ ]   ").
+
+mapa(galinheiro):- write("     |      "), nl,
+                   write("  o  /// [ ]"), nl,
+                   write("      [x]   ").
 
 
 
