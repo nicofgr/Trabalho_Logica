@@ -72,29 +72,178 @@ dialogue(homem_de_terno):- duda_possui(bessy), write("Homem de Terno: Obrigado p
 dialogue(homem_de_terno):- duda_possui(bessy_de_terno), write("A Bessy de terno? Como não pensei nisso antes? Vou levar ela para o escritório da minha empresa na cidade.").
 dialogue(homem_de_terno):- write("Homem de Terno: Não consigo concentrar no trabalho sabendo que a minha galinha fugiu :(").
 
-mapa(patio):- write("     |      "), nl,
-              write("  o   x  [ ]"), nl,
-              write("      [ ]   ").
 
-mapa(lagoa):- write("     |      "), nl,
-              write(" (x) /// [ ]"), nl,
-              write("      [ ]   ").
+mapa(patio):- (duda_possui(bessy); duda_possui(bessy_de_terno)),
+              write(" _____________________ "), nl,
+              write("| ´´     T      ´ ´´  |"), nl,
+              write("|T ´ ´ T    ´ ´´   T  |"), nl,
+              write("|   T  ´  T     T  `  |"), nl,
+              write("| T         T `` T____|"), nl,
+              write("| `   ´ ´´  _  ` /____|"), nl,
+              write("| ____ `´ _| |_  |_[] |"), nl,
+              write("||~~~~| _|.  ..|___|| |"), nl,
+              write("||~~~~||_ ; D; |---|| |"), nl,
+              write("| |~~~|  |_,__:|  //|_|"), nl,
+              write("|  ---            |[]_|"), nl,
+              write(" --------------------- "), nl.
+mapa(patio):- write(" _____________________ "), nl,
+              write("| ´´     T      ´ ´´  |"), nl,
+              write("|T ´ ´ T    ´ ´´   T  |"), nl,
+              write("|   T  b  T     T  `  |"), nl,
+              write("| T         T `` T____|"), nl,
+              write("| `   ´ ´´  _  ` /____|"), nl,
+              write("| ____ `´ _| |_  |_[] |"), nl,
+              write("||~~~~| _|.  ..|___|| |"), nl,
+              write("||~~~~||_ ; D; |---|| |"), nl,
+              write("| |~~~|  |_,__:|  //|_|"), nl,
+              write("|  ---            |[]_|"), nl,
+              write(" --------------------- "), nl.
 
-mapa(floresta):- write("     x      "), nl,
-                 write("  o  /// [ ]"), nl,
-                 write("      [ ]   ").
 
-mapa(casa):- write("     |      "), nl,
-             write("  o  /// [x]"), nl,
-             write("      [ ]   ").
 
-mapa(escritorio):- write("     |      "), nl,
-                   write("  o  /// [x]"), nl,
-                   write("      [ ]   ").
+mapa(lagoa):- (duda_possui(bessy); duda_possui(bessy_de_terno)),
+              write(" _____________________ "), nl,
+              write("| ´´     T      ´ ´´  |"), nl,
+              write("|T ´ ´ T    ´ ´´   T  |"), nl,
+              write("|   T  ´  T     T  `  |"), nl,
+              write("| T         T `` T____|"), nl,
+              write("| `   ´ ´´  _  ` /____|"), nl,
+              write("| ____ `´ _| |_  |_[] |"), nl,
+              write("||~~~~| _|.  ..|___|| |"), nl,
+              write("||~~D~||_ ; .; |---|| |"), nl,
+              write("| |~~~|  |_,__:|  //|_|"), nl,
+              write("|  ---            |[]_|"), nl,
+              write(" --------------------- "), nl.
 
-mapa(galinheiro):- write("     |      "), nl,
-                   write("  o  /// [ ]"), nl,
-                   write("      [x]   ").
+mapa(lagoa):- write(" _____________________ "), nl,
+              write("| ´´     T      ´ ´´  |"), nl,
+              write("|T ´ ´ T    ´ ´´   T  |"), nl,
+              write("|   T  b  T     T  `  |"), nl,
+              write("| T         T `` T____|"), nl,
+              write("| `   ´ ´´  _  ` /____|"), nl,
+              write("| ____ `´ _| |_  |_[] |"), nl,
+              write("||~~~~| _|.  ..|___|| |"), nl,
+              write("||~~D~||_ ; .; |---|| |"), nl,
+              write("| |~~~|  |_,__:|  //|_|"), nl,
+              write("|  ---            |[]_|"), nl,
+              write(" --------------------- "), nl.
+
+
+mapa(floresta):- (duda_possui(bessy); duda_possui(bessy_de_terno)),
+                 write(" _____________________ "), nl,
+                 write("| ´´     T      ´ ´´  |"), nl,
+                 write("|T ´ ´ T    ´ ´´   T  |"), nl,
+                 write("|   T  ´  T     T  `  |"), nl,
+                 write("| T     D   T `` T____|"), nl,
+                 write("| `   ´ ´´  _  ` /____|"), nl,
+                 write("| ____ `´ _| |_  |_[] |"), nl,
+                 write("||~~~~| _|.  ..|___|| |"), nl,
+                 write("||~~~~||_ ; .; |---|| |"), nl,
+                 write("| |~~~|  |_,__:|  //|_|"), nl,
+                 write("|  ---            |[]_|"), nl,
+                 write(" --------------------- "), nl.
+
+mapa(floresta):- write(" _____________________ "), nl,
+                 write("| ´´     T      ´ ´´  |"), nl,
+                 write("|T ´ ´ T    ´ ´´   T  |"), nl,
+                 write("|   T  b  T     T  `  |"), nl,
+                 write("| T     D   T `` T____|"), nl,
+                 write("| `   ´ ´´  _  ` /____|"), nl,
+                 write("| ____ `´ _| |_  |_[] |"), nl,
+                 write("||~~~~| _|.  ..|___|| |"), nl,
+                 write("||~~~~||_ ; .; |---|| |"), nl,
+                 write("| |~~~|  |_,__:|  //|_|"), nl,
+                 write("|  ---            |[]_|"), nl,
+                 write(" --------------------- "), nl.
+
+
+mapa(casa):- (duda_possui(bessy); duda_possui(bessy_de_terno)),
+             write(" _____________________ "), nl,
+             write("| ´´     T      ´ ´´  |"), nl,
+             write("|T ´ ´ T    ´ ´´   T  |"), nl,
+             write("|   T  ´  T     T  `  |"), nl,
+             write("| T         T `` T____|"), nl,
+             write("| `   ´ ´´  _  ` /____|"), nl,
+             write("| ____ `´ _| |_  |_[D]|"), nl,
+             write("||~~~~| _|.  ..|___|| |"), nl,
+             write("||~~~~||_ ; .; |---|| |"), nl,
+             write("| |~~~|  |_,__:|  //|_|"), nl,
+             write("|  ---            |[]_|"), nl,
+             write(" --------------------- "), nl.
+
+mapa(casa):- write(" _____________________ "), nl,
+             write("| ´´     T      ´ ´´  |"), nl,
+             write("|T ´ ´ T    ´ ´´   T  |"), nl,
+             write("|   T  b  T     T  `  |"), nl,
+             write("| T         T `` T____|"), nl,
+             write("| `   ´ ´´  _  ` /____|"), nl,
+             write("| ____ `´ _| |_  |_[D]|"), nl,
+             write("||~~~~| _|.  ..|___|| |"), nl,
+             write("||~~~~||_ ; .; |---|| |"), nl,
+             write("| |~~~|  |_,__:|  //|_|"), nl,
+             write("|  ---            |[]_|"), nl,
+             write(" --------------------- "), nl.
+
+
+mapa(galinheiro):- (duda_possui(bessy); duda_possui(bessy_de_terno)),
+                   write(" _____________________ "), nl,
+                   write("| ´´     T      ´ ´´  |"), nl,
+                   write("|T ´ ´ T    ´ ´´   T  |"), nl,
+                   write("|   T  ´  T     T  `  |"), nl,
+                   write("| T         T `` T____|"), nl,
+                   write("| `   ´ ´´  _  ` /____|"), nl,
+                   write("| ____ `´ _| |_  |_[] |"), nl,
+                   write("||~~~~| _|.  ..|___|| |"), nl,
+                   write("||~~~~||_ ; .; |---|| |"), nl,
+                   write("| |~~~|  |_,__:|  //|_|"), nl,
+                   write("|  ---            |D]_|"), nl,
+                   write(" --------------------- "), nl.
+
+mapa(galinheiro):- write(" _____________________ "), nl,
+                   write("| ´´     T      ´ ´´  |"), nl,
+                   write("|T ´ ´ T    ´ ´´   T  |"), nl,
+                   write("|   T  b  T     T  `  |"), nl,
+                   write("| T         T `` T____|"), nl,
+                   write("| `   ´ ´´  _  ` /____|"), nl,
+                   write("| ____ `´ _| |_  |_[] |"), nl,
+                   write("||~~~~| _|.  ..|___|| |"), nl,
+                   write("||~~~~||_ ; .; |---|| |"), nl,
+                   write("| |~~~|  |_,__:|  //|_|"), nl,
+                   write("|  ---            |D]_|"), nl,
+                   write(" --------------------- "), nl.
+
+
+mapa(escritorio):- (duda_possui(bessy); duda_possui(bessy_de_terno)),
+                   write(" _____________________ "), nl,
+                   write("| ´´     T      ´ ´´  |"), nl,
+                   write("|T ´ ´ T    ´ ´´   T  |"), nl,
+                   write("|   T  ´  T     T  `  |"), nl,
+                   write("| T         T `` T____|"), nl,
+                   write("| `   ´ ´´  _  ` /_D__|"), nl,
+                   write("| ____ `´ _| |_  |_[] |"), nl,
+                   write("||~~~~| _|.  ..|___|| |"), nl,
+                   write("||~~~~||_ ; .; |---|| |"), nl,
+                   write("| |~~~|  |_,__:|  //|_|"), nl,
+                   write("|  ---            |[]_|"), nl,
+                   write(" --------------------- "), nl.
+
+mapa(escritorio):- write(" _____________________ "), nl,
+                   write("| ´´     T      ´ ´´  |"), nl,
+                   write("|T ´ ´ T    ´ ´´   T  |"), nl,
+                   write("|   T  b  T     T  `  |"), nl,
+                   write("| T         T `` T____|"), nl,
+                   write("| `   ´ ´´  _  ` /_D__|"), nl,
+                   write("| ____ `´ _| |_  |_[] |"), nl,
+                   write("||~~~~| _|.  ..|___|| |"), nl,
+                   write("||~~~~||_ ; .; |---|| |"), nl,
+                   write("| |~~~|  |_,__:|  //|_|"), nl,
+                   write("|  ---            |[]_|"), nl,
+                   write(" --------------------- "), nl.
+
+
+
+
+
 
 
 
