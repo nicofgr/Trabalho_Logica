@@ -10,18 +10,16 @@ acessivel(patio, Y):- Y \== casa, Y\== escritorio.
 acessivel(X, patio):- X \== escritorio.
 acessivel(casa, escritorio).
 acessivel(escritorio, casa).
-trocar_local(X, Y):- retract(local_duda(X)), assert(local_duda(Y)).
+
+trocar_local(X):- local_duda(Y), retract(local_duda(Y)), assert(local_duda(X)).
 
 ir_para(X):- X\== patio, X\== casa, X\== lagoa, X\== galinheiro, X\== floresta, X\== escritorio, write("-- Esse local não existe, tente outro.").
 ir_para(X):- local_duda(Y), X == Y, write("-- Duda já está em "), write(X).
 ir_para(casa):- not(duda_possui(banho)), write("-- Estou imunda de barro, não posso entrar na casa! Deve ter algum lugar onde possa me limpar").
 ir_para(X):- local_duda(Y), not(acessivel(Y, X)), write("-- Não consigo ir de "), write(Y), write(" para "), write(X).
-ir_para(escritorio):- local_duda(Y), retract(local_duda(Y)), assert(local_duda(X)), mapa(X), duda_possui(bessy_de_terno), write("-- Duda foi para "), write(X), nl, write("Voce entra no pequeno escritorio da casa e vê um [homem_de_terno]").
-ir_para(escritorio):- local_duda(Y), retract(local_duda(Y)), assert(local_duda(X)), mapa(X), duda_possui(bessy), write("-- Duda foi para "), write(X), nl, write("Voce entra no pequeno escritorio da casa e vê um [homem_de_terno] e um [terno_pequeno] em cima da cama").
-ir_para(escritorio):- local_duda(Y), retract(local_duda(Y)), assert(local_duda(X)), mapa(X), duda_possui(terno_pequeno), write("-- Duda foi para "), write(X), nl, write("Voce entra no pequeno escritorio da casa e vê um [homem_de_terno] triste").
-ir_para(escritorio):- local_duda(Y), retract(local_duda(Y)), assert(local_duda(X)), mapa(X), write("-- Duda foi para "), write(X), nl, write("Voce entra no pequeno escritorio da casa e vê um [homem_de_terno] triste e um [terno_pequeno] em cima da cama").
+ir_para(escritorio):- duda_possui(bessy_de_terno), trocar_local(escritorio), mapa(escritorio), write("-- Duda foi para escritorio"), nl, dialogue(escritorio).
 
-ir_para(X):- local_duda(Y), retract(local_duda(Y)), assert(local_duda(X)), mapa(X), write("-- Duda foi para "), write(X).
+ir_para(X):- trocar_local(X), mapa(X), nl, write("-- Duda foi para "), write(X), nl.
 
 
 pegar(X):- duda_possui(Y), X == Y, write("-- Eu já tenho "), write(X).
@@ -51,7 +49,8 @@ falar_com(bessy):- duda_possui(bessy), write("-- Bessy: có có cocó").
 falar_com(bessy):- local_duda(floresta), write("-- Bessy: có có cocó").
 falar_com(bessy):- write("-- Bessy não está aqui").
 
-falar_com(homem_de_terno):- dialogue(homem_de_terno).
+falar_com(homem_de_terno):- local_duda(escritorio), dialogue(homem_de_terno).
+falar_com(homem_de_terno):- write("Homem de terno não está aqui.").
 
 falar_com(X):- write("-- Não reconheço esse tal "), write(X).
 
@@ -73,6 +72,12 @@ dialogue(menu_principal):- write("FUGA DA GALINHA"), nl,
                write("falar_com(X) - Fala com a pessoa especificada entre os parenteses"), nl,
                nl, write("-----LOCAIS-----"), nl,
                write("patio "), nl, write("floresta "), nl, write("lagoa "), nl, write("casa "), nl, write("galinheiro "), nl, write("escritorio "), nl.
+
+dialogue(escritorio):- (duda_possui(bessy_de_terno) ; (duda_possui(bessy) , duda_possui(terno_pequeno))), write("Você entra no pequeno escritorio da casa e vê um [homem_de_terno]"), nl.
+dialogue(escritorio):- duda_possui(bessy), write("Você entra no pequeno escritorio da casa e vê um [homem_de_terno] e um [terno_pequeno] em cima da cama"), nl.
+dialogue(escritorio):- duda_possui(terno_pequeno), write("Você entra no pequeno escritorio da casa e vê um [homem_de_terno] triste"), nl.
+dialogue(escritorio):- write("-- Você entra no pequeno escritorio da casa e vê um [homem_de_terno] triste e um [terno_pequeno] em cima da cama"), nl.
+
 
 dialogue(homem_de_terno):- duda_possui(bessy), write("-- Homem de Terno: Obrigado por resgatar a Bessy! :)") ,nl.
 dialogue(homem_de_terno):- duda_possui(bessy_de_terno), write("-- Homem de Terno: A Bessy de terno? Como não pensei nisso antes? Vou levar ela para o escritório da minha empresa na cidade."), nl.
