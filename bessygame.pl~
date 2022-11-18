@@ -45,6 +45,7 @@ colocar(terno_pequeno, bessy):- retract(duda_possui(bessy)), retract(duda_possui
 
 
 falar_com(bessy):- duda_possui(bessy), write("** Bessy: có có cocó").
+falar_com(bessy):- duda_possui(bessy_de_terno), write("** Bessy: có có cocó").
 falar_com(bessy):- local_duda(floresta), write("** Bessy: có có cocó").
 falar_com(bessy):- write("-- Bessy não está aqui").
 

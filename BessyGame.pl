@@ -56,7 +56,7 @@ falar_com(X):- write("** Não reconheço esse tal "), write(X).
 
 
 finalizado:- duda_possui(bessy), local_duda(galinheiro),  write("** Obrigado por salvar Bessy!!!!!!!!!"), nl.
-finalizado:- duda_possui(bessy_de_terno), local_duda(escritorio),  dialogue(homem_de_terno), write("** Na segunda, Homem de Terno leva Bessy para o escritório e ela consegue um emprego, em poucos anos Bessy sobe a escada corporativa e se torna CEO da empresa. Bessy vive feliz."), nl.
+finalizado:- duda_possui(bessy_de_terno), local_duda(escritorio),  dialogue(homem_de_terno), nl, write("** Na segunda, Homem de Terno leva Bessy de Terno para o escritório na cidade, Bessy impressiona o chefe do Homem de Terno e consegue um emprego na empresa, em poucos anos Bessy sobe a escada corporativa e se torna CEO da empresa. Hoje em dia Bessy vive feliz pedindo provas para mulheres de negócio pelo mundo."), nl.
 
 rodar:- dialogue(sim), dialogue(menu_principal), mapa(patio), retract(dialogue(sim)), rodar.
 rodar:- finalizado, nl, write("Jogo finalizado").
