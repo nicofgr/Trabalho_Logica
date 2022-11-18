@@ -16,7 +16,7 @@ ir_para(X):- X\== patio, X\== casa, X\== lagoa, X\== galinheiro, X\== floresta, 
 ir_para(X):- local_duda(Y), X == Y, write("** Duda já está em "), write(X).
 ir_para(casa):- not(duda_possui(banho)), write("** Estou imunda de barro, não posso entrar na casa! Deve ter algum lugar onde possa me limpar").
 ir_para(X):- local_duda(Y), not(acessivel(Y, X)), write("** Não consigo ir de "), write(Y), write(" para "), write(X).
-ir_para(escritorio):- duda_possui(bessy_de_terno), trocar_local(escritorio), mapa(escritorio), write("** Duda foi para escritorio"), nl, dialogue(escritorio).
+ir_para(escritorio):- trocar_local(escritorio), mapa(escritorio), write("** Duda foi para escritorio"), nl, dialogue(escritorio).
 
 ir_para(X):- trocar_local(X), mapa(X), nl, write("** Duda foi para "), write(X), nl.
 
@@ -85,7 +85,7 @@ dialogue(escritorio):- write("** Você entra no pequeno escritorio da casa e vê u
 
 
 dialogue(homem_de_terno):- duda_possui(bessy), write("** Homem de Terno: Obrigado por resgatar a Bessy! :)") ,nl.
-dialogue(homem_de_terno):- duda_possui(bessy_de_terno), write("** Homem de Terno: A Bessy de terno? Como não pensei nisso antes? Vou levar ela para o escritório da minha empresa na cidade."), nl.
+dialogue(homem_de_terno):- duda_possui(bessy_de_terno), nl, write("** Homem de Terno: A Bessy de terno? Como não pensei nisso antes? Vou levar ela para o escritório da minha empresa na cidade."), nl.
 dialogue(homem_de_terno):- write("** Homem de Terno: Não consigo concentrar no trabalho sabendo que a minha galinha fugiu :("), nl.
 
 
